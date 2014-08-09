@@ -1,6 +1,15 @@
 <?php
 require("Tools.class.php");
 $tool= new Tool();
+if(!@fopen("login.css","r")){
+	echo "error the server can't use fopen on internal file.";
+	exit;
+}else{
+	if(!@fopen("http://".$_SERVER["HTTP_HOST"].dirname($_SERVER["PHP_SELF"])."/login.css","r")){
+		echo "error the server can't contact external resource using fopen.";
+		exit;
+	}
+}
 $tocken=$tool->GetTocken('../lib/tocken.txt');
 $file="../lib/config.php";
 $FILE=file($file);
